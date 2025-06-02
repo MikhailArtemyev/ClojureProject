@@ -1,4 +1,4 @@
-(ns Tests.Unit.invalidTest
+(ns Tests.invalidTest
   (:require
     [clojure.test :refer :all]
     [cheshire.core :as json]

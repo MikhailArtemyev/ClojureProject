@@ -1,4 +1,4 @@
-package Tests.EndToEnd;
+package Tests;
 
 import java.net.URI;
 import java.net.http.*;
