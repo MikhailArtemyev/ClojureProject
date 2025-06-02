@@ -9,8 +9,8 @@ phases:
   build:
     commands:
       - docker build --platform linux/amd64 -t 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:web ./src/UI
-      - docker  build --platform linux/amd64 -t 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:core ./src
       - docker push 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:web
+      - docker  build --platform linux/amd64 -t 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:core .
       - docker push 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:core
   post_build:
     commands:
