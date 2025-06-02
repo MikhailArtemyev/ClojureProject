@@ -1,0 +1,7 @@
+{
+  "dbtype": "postgresql",
+  "dbname": "postgres",
+  "host": "db",
+  "user": "postgres",
+  "password": "mysecretpassword"
+}

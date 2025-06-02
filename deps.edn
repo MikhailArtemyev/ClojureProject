@@ -1,0 +1,20 @@
+{:deps
+ {org.clojure/clojure {:mvn/version "1.12.0"}
+
+  ;; SQL
+  seancorfield/next.jdbc {:mvn/version "1.2.659"}
+  org.postgresql/postgresql {:mvn/version "42.7.3"}
+
+  ;; Web
+  ring/ring-core {:mvn/version "1.11.0"}
+  ring/ring-json {:mvn/version "0.5.1"}
+  ring/ring-jetty-adapter {:mvn/version "1.11.0"}
+  compojure {:mvn/version "1.7.0"}
+  ring-cors/ring-cors {:mvn/version "0.1.13"}
+
+  ;; JSON
+  cheshire {:mvn/version "5.11.0"}}
+
+ :aliases
+ {:run
+  {:main-opts ["-m" "core.patient-crud.API"]}}}

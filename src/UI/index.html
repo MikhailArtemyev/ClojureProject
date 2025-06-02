@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Patient Manager</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; }
+        input, button, select { margin: 0.5em; padding: 0.5em; }
+        table { border-collapse: collapse; margin-top: 1em; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 0.5em; text-align: left; }
+        #errorBox { display: none; margin-top: 10px; color: red; }
+        #patientForm { display: none; margin-top: 1em; }
+    </style>
+</head>
+<body>
+
+<h1>Patient Manager</h1>
+
+<label for="errorBox"></label><textarea id="errorBox" rows="5" cols="50" readonly></textarea>
+
+<button id="revealCreateFormButton" onclick="revealCreateForm()">Create Patient</button>
+
+<form id="patientForm">
+    <h2 id="formTitle">Create Patient</h2>
+    <input id="editingPatientId" type="hidden"/>
+    <label for="first_name"></label><input type="text" id="first_name" placeholder="First Name" required />
+    <label for="middle_name"></label><input type="text" id="middle_name" placeholder="Middle Name" />
+    <label for="second_name"></label><input type="text" id="second_name" placeholder="Second Name" required />
+    <label for="address"></label><input type="text" id="address" placeholder="Address" />
+    <label for="date_of_birth"></label><input type="date" id="date_of_birth" placeholder="Date of Birth" required/>
+    <label for="oms_policy_number"></label><input type="text" id="oms_policy_number" placeholder="OMS Policy Number" required/>
+    <label for="gender_male">Gender:</label>
+    <select id="gender_male">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <button type="submit">Submit</button>
+    <button type="button" onclick="hideCreateForm()">Cancel</button>
+</form>
+
+<h2>All Patients</h2>
+<label for="Search"></label><input type="text" id="Search" placeholder="Search" onkeyup="displayedFoundPatients()" />
+<label>
+    Apply Filters: <input type="checkbox" id="filters" onclick="ApplyFilters()" />
+</label>
+
+<div id="filterControls" style="margin-top: 1em; display: none;" onclick="displayAllPatients()">
+    <label for="dob_filter">Date of Birth After:</label>
+    <input type="date" id="dob_filter" />
+    <label for="gender_filter">Gender:</label>
+    <select id="gender_filter">
+        <option value="">All</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+</div>
+
+<table id="patientTable">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Middle Name</th>
+        <th>Second Name</th>
+        <th>Address</th>
+        <th>Date of Birth</th>
+        <th>Gender</th>
+        <th>OMS</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script src="uiScripting.js"></script>
+
+</body>
+</html>

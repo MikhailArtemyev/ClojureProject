@@ -1,0 +1,22 @@
+services:
+  core:
+    image: my-project
+    ports:
+     - "3000:3000"
+    restart: always
+  web:
+    image: applied-nginx
+    ports:
+      - "8080:80"
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - 2e9cd4cd593ee70c2928dcb6d8288e70bd605b4d1b26a250bb8de1f3d2d38fa0:/var/lib/postgresql/data
+volumes:
+    2e9cd4cd593ee70c2928dcb6d8288e70bd605b4d1b26a250bb8de1f3d2d38fa0:
+      external: true
