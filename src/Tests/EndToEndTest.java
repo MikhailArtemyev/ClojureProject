@@ -103,7 +103,7 @@ public class EndToEndTest {
                 .POST(BodyPublishers.ofString(json))
                 .build();
 
-        var r = client.send(create, BodyHandlers.ofString());
+        client.send(create, BodyHandlers.ofString());
 
         // Get All
         HttpRequest getAll = HttpRequest.newBuilder()
