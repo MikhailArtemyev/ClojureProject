@@ -1,9 +1,9 @@
-(ns Tests.invalidTest
+(ns invalidTest
   (:require
     [clojure.test :refer :all]
     [cheshire.core :as json]
     [core.patient-crud.SQL :as sql]
-    [Tests.Unit.validTest :refer [setup, get-last-patient]]
+    [validTest :refer [setup, get-last-patient]]
     )
   )
 

@@ -94,7 +94,7 @@ public class EndToEndTest {
         String json = buildPatientJson(
                 id,
                 name,
-                "555444333222111",
+                "5554443332221111",
                 true,
                 "1111-11-11");
 
@@ -105,7 +105,7 @@ public class EndToEndTest {
                 .POST(BodyPublishers.ofString(json))
                 .build();
 
-        client.send(create, BodyHandlers.ofString());
+        var r = client.send(create, BodyHandlers.ofString());
 
         // Get All
         HttpRequest getAll = HttpRequest.newBuilder()
