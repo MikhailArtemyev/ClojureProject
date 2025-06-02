@@ -33,5 +33,5 @@ jobs:
     - name: Compile and run Java tests
       run: |
         mkdir -p bin
-        javac -d bin $(find src/EndToEnd -name "*.java")
-        java -cp bin Tests.EndToEnd.EndToEndTest
+        javac -d bin $(find src/Tests -name "*.java")
+        java -cp bin Tests.EndToEndTest
