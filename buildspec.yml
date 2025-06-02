@@ -14,4 +14,5 @@ phases:
       - docker push 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:core
   post_build:
     commands:
-      - docker image rm 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:latest
+      - docker image rm 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:web
+      - docker image rm 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:core
