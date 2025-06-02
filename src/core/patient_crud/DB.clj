@@ -33,7 +33,7 @@
      gender_male BOOLEAN,
      date_of_birth DATE,
      address TEXT,
-     oms_policy_number TEXT
+     oms_policy_number text
    );")
 
 (defn ensure-patients-table-exists []
