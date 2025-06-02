@@ -27,7 +27,7 @@
                    result (sql/update-patient (Integer/parseInt id) (cheshire.core/generate-string body))]
                (if (not= result "invalid")
                  (do {:status 200 :body {:message "Patient updated"}})
-                 {:status 400 :body {:message "Invalid patient"}}
+                 {:status 400 :body {:message "Invalid request"}}
                  )
                )
              )
