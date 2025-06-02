@@ -9,3 +9,4 @@ docker push 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:latest
 
 # 3) cleanup
 docker image rm 746669226532.dkr.ecr.eu-west-2.amazonaws.com/elephant:latest
+ 
