@@ -46,5 +46,5 @@
       wrap-json-response
       ))
 
-(defn -main [& args]
+(defn -main []
   (run-jetty app {:port 3000 :join? false}))
