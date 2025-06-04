@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/patients';
+const API_URL = 'https://mid4qexpme.eu-west-2.awsapprunner.com/patients';
 let filtersApply = false;
 
 async function ApplyFilters() {
