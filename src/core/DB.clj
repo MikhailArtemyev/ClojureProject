@@ -9,7 +9,7 @@
       (json/parse-stream r true)
       )
   (catch Exception e
-    (print (.getMessage e))
+    (println (ex-message e))
     {:dbtype "postgresql"
      :dbname "postgres"
      :host "localhost"
@@ -20,9 +20,17 @@
   )
 
 (def db-config
-  (read-config "src/core/patient_crud/config.json"))
+  (read-config "src/core/config.json"))
 
-(def db-connection (jdbc/get-datasource db-config))
+(def db-connection
+  (try
+    (jdbc/get-datasource db-config)
+    (catch Exception e
+      (println "an error occurred")
+      (println (ex-message e))
+      (throw e))
+    )
+  )
 
 (def create-patients-table-sql
   "CREATE TABLE IF NOT EXISTS patients(
