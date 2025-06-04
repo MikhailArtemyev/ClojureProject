@@ -1,8 +1,8 @@
-(ns core.patient-crud.SQL
+(ns core.SQL
   (:require
     [next.jdbc.sql :as sql]
     [cheshire.core :as json]
-    [core.patient-crud.DB :refer [db-connection]]
+    [core.DB :refer [db-connection]]
     [clojure.string :as str]
             )
   )

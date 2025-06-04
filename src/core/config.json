@@ -1,7 +1,7 @@
 {
   "dbtype": "postgresql",
   "dbname": "postgres",
-  "host": "db",
+  "host": "postgresql-db.c9uqisueen65.eu-west-2.rds.amazonaws.com",
   "user": "postgres",
   "password": "mysecretpassword"
 }

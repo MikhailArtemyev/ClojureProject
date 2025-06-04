@@ -1,4 +1,4 @@
-(ns core.patient-crud.DB
+(ns core.DB
   (:require [cheshire.core :as json]
             [clojure.java.io :as io]
             [next.jdbc :as jdbc]))
@@ -31,7 +31,7 @@
      middle_name TEXT,
      second_name TEXT,
      gender_male BOOLEAN,
-     date_of_birth DATE,
+     date_of_birth TEXT,
      address TEXT,
      oms_policy_number TEXT
    );")

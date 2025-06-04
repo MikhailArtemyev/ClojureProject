@@ -1,9 +1,9 @@
-(ns core.patient-crud.API
+(ns core.API
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.json :refer :all]
             [compojure.core :refer :all]
             [compojure.route :as route]
-            [core.patient-crud.SQL :as sql]
+            [core.SQL :as sql]
             [ring.middleware.cors :refer [wrap-cors]]
             )
   )
@@ -43,7 +43,7 @@
       (wrap-cors :access-control-allow-origin [#".*"]
                  :access-control-allow-methods [:get :post :put :delete])
       (wrap-json-body {:keywords? true})
-      wrap-json-response
+      (wrap-json-response)
       ))
 
 (defn -main []
