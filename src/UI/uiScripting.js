@@ -28,17 +28,22 @@ async function displayAllPatients() {
     const errorBox = clearedErrorBox();
     try {
         const patients = await getPatients();
-        const filtered = filtersApply ? filterPatients(patients) : patients;
-        displayPatients(filtered);
+        if(filtersApply){
+            const dob = document.getElementById('dob_filter').value;
+            const gender = document.getElementById('gender_filter').value;
+            const filtered = filterPatients(patients, dob, gender);
+            displayPatients(filtered);
+        }
+        else{
+            displayPatients(patients);
+        }
+
     } catch (error) {
         displayError(errorBox, error);
     }
 }
 
-function filterPatients(patients) {
-    const dob = document.getElementById('dob_filter').value;
-    const gender = document.getElementById('gender_filter').value;
-
+function filterPatients(patients, dob, gender) {
     return patients.filter(p => {
         let dobOk = !dob || (p.date_of_birth && new Date(p.date_of_birth) >= new Date(dob));
         let genderOk = !gender || (gender === 'male' ? p.gender_male : !p.gender_male);
