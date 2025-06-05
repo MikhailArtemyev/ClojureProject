@@ -2,10 +2,12 @@
   (:require
     [clojure.test :refer :all]
     [cheshire.core :as json]
-    [core.patient-crud.SQL :as sql]
+    [core.SQL :as sql]
     [validTest :refer [setup, get-last-patient]]
     )
   )
+
+; a block of tests to examine how well validation performs
 
 (defn new-test-patient [id name date pol-num]
   {:id            id

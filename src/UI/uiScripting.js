@@ -1,17 +1,20 @@
 const API_URL = 'https://mid4qexpme.eu-west-2.awsapprunner.com/patients';
 let filtersApply = false;
 
+// runs on checking "Apply Filters" box -> displays filters as well as all patients
 async function ApplyFilters() {
     filtersApply = document.getElementById('filters').checked;
     document.getElementById('filterControls').style.display = filtersApply ? 'block' : 'none';
     await displayAllPatients();
 }
 
+// requests and returns a list of all patients from the server
 async function getPatients() {
     const res = await fetch(API_URL);
     return await res.json();
 }
 
+// return an HTML element corresponding to a non-displayed error box
 function clearedErrorBox(){
     const errorBox = document.getElementById('errorBox');
     errorBox.value = '';
@@ -19,11 +22,13 @@ function clearedErrorBox(){
     return errorBox;
 }
 
+// displays an error in the provided box
 function displayError(box, message){
     box.style.display = 'block';
     box.value = 'An error occurred: ' + message;
 }
 
+// tries to display all patients that match filters if applied
 async function displayAllPatients() {
     const errorBox = clearedErrorBox();
     try {
@@ -43,6 +48,7 @@ async function displayAllPatients() {
     }
 }
 
+// returns a list of patients that match the provided filters
 function filterPatients(patients, dob, gender) {
     return patients.filter(p => {
         let dobOk = !dob || (p.date_of_birth && new Date(p.date_of_birth) >= new Date(dob));
@@ -51,6 +57,7 @@ function filterPatients(patients, dob, gender) {
     });
 }
 
+// creates HTML elements (rows in the table) for every patient
 function displayPatients(patients) {
     const tbody = document.querySelector('#patientTable tbody');
     tbody.innerHTML = '';
@@ -72,12 +79,14 @@ function displayPatients(patients) {
     });
 }
 
+// creates new unique id
 async function createNewId(){
     const patients = await getPatients();
     const ids = patients.map(p => parseInt(p.id));
     return ids.length === 0 ? 1 : Math.max(...ids) + 1;
 }
 
+// sends a request to create a patient with provided data
 async function createNewPatient(patient) {
     patient.id = await createNewId();
     return await fetch(API_URL, {
@@ -87,6 +96,7 @@ async function createNewPatient(patient) {
     });
 }
 
+// sends a request to update a patient with provided data
 async function updatePatient(id, patient) {
     return await fetch(`${API_URL}/${id}`, {
         method: 'PUT',
@@ -95,11 +105,13 @@ async function updatePatient(id, patient) {
     });
 }
 
+// sends a request to delete a patient with provided id
 async function deletePatient(id) {
     await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
     await displayAllPatients();
 }
 
+// reveals a form for editing a patient with specified id
 async function editPatient(id) {
     const patients = await getPatients();
     const patient = patients.find(p => p.id === id);
@@ -118,11 +130,13 @@ async function editPatient(id) {
     revealCreateForm();
 }
 
+// reveals a form for creating/updating patients
 function revealCreateForm() {
     document.getElementById('patientForm').style.display = 'block';
     document.getElementById('revealCreateFormButton').style.display = 'none';
 }
 
+// hides a form for creating/updating patients
 function hideCreateForm() {
     document.getElementById('patientForm').style.display = 'none';
     document.getElementById('revealCreateFormButton').style.display = 'block';
@@ -131,6 +145,8 @@ function hideCreateForm() {
     document.getElementById('formTitle').textContent = 'Create Patient';
 }
 
+
+// listener for 'submit' action on patient creation/update
 document.getElementById('patientForm').addEventListener('submit', async function (e) {
     e.preventDefault();
     const errorBox = clearedErrorBox();
@@ -165,6 +181,7 @@ document.getElementById('patientForm').addEventListener('submit', async function
     }
 });
 
+// display patient whose names match a search
 async function displayedFoundPatients() {
     const search = document.getElementById('Search').value.toLowerCase();
     const patients = await getPatients();

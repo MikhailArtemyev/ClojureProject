@@ -7,7 +7,7 @@
             )
   )
 
-;; validate a patient on create or update
+;; validate a patient on create or update requests
 (defn validate [patient_data]
   (let [
         valid_oms (== (count(:oms_policy_number patient_data)) 16)
@@ -30,16 +30,16 @@
     )
   )
 
-;; gets read of "patients/"
+;; gets read of "patients/" prefix
 (defn unqualify-keys [m]
   (into {}
         (for [[k v] m]
           [(keyword (name k)) v])))
 
-;; returns a list of all patients +
+;; returns a list of all patients
 (defn get-all-patients []
-   (let [rows (sql/query db-connection ["select * from patients"])]
-     (map unqualify-keys rows)))
+   (let [rows (sql/query db-connection ["select * from patients"])] ;; to implement filtering on backend,
+     (map unqualify-keys rows)))                                    ;; change the query to include filtering
 
 ;; updates a patient with specified id
 (defn update-patient [id request_json]
@@ -50,7 +50,6 @@
       )
     )
   )
-
 
 ;; deletes a patient with a specified id
 (defn delete-patient [id]

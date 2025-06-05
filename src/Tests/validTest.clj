@@ -2,10 +2,12 @@
   (:require
     [clojure.test :refer :all]
     [cheshire.core :as json]
-    [core.patient-crud.SQL :as sql]
-    [core.patient-crud.DB :refer [db-connection]]
+    [core.SQL :as sql]
+    [core.DB :refer [db-connection]]
     )
   )
+
+; a block of tests to examine how well patients that pass validation are handled
 
 (defn new-test-patient [id pn]
   {:id            id

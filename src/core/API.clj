@@ -8,13 +8,14 @@
             )
   )
 
+;; defines http rout handling (CRUD)
 (defroutes app-routes
            (POST "/patients" request
              (let [body (:body request)
                    result (sql/create-patient (cheshire.core/generate-string body))]
                (if (not= result "invalid")
                  (do {:status 201 :body {:message "Patient created"}})
-                 {:status 400 :body {:message "Invalid patient"}}
+                 {:status 400 :body {:message "Invalid patient"}} ; if a patient failed validation
                  )
                )
              )
@@ -36,7 +37,7 @@
              (sql/delete-patient (Integer/parseInt id))
              {:status 200 :body {:message "Patient deleted"}})
 
-           (route/not-found {:status 404 :body {:error "Not Found"}}))
+           (route/not-found {:status 404 :body {:error "Not Found"}})) ;; on unexpected rout
 
 (def app
   (-> app-routes
@@ -47,4 +48,4 @@
       ))
 
 (defn -main []
-  (run-jetty app {:port 3000 :join? false}))
+  (run-jetty app {:port 3000 :join? false}))                ; starts a web server with "app" handler options

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EndToEndTest {
 
+    // change if testing locally
     private static final String BASE_URL = "https://mid4qexpme.eu-west-2.awsapprunner.com/patients";
     private static final HttpClient client = HttpClient.newHttpClient();
 
