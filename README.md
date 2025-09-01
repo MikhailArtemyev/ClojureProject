@@ -1,4 +1,4 @@
-# Patient CRUD App (Clojure/ClojureScript + PostgreSQL)
+# Patient CRUD App (Clojure + Html/JavaScript + PostgreSQL)
 
 ## Overview 
 
